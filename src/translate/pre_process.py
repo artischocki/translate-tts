@@ -74,3 +74,4 @@ def split_book(
                 f"    {stripped_chapter_name}: {len(list(paragraphs.values())[0])} paragraphs"
             )
     print("Done.")
+    return organized_book

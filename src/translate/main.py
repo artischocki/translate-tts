@@ -1,7 +1,13 @@
 from pathlib import Path
+import os
 
 from src.translate.pre_process import split_book
+from src.translate.translate import DeeplTranslator
 
+SOURCE_LANG = "EN"
+TARGET_LANG = "DE"
+
+### 1. PRE PROCESS ###
 input_dir = Path("/") / "home" / "anf3fe" / "book_in_dir"
 orig_path = input_dir / "the_idiot.txt"  # englische uebersetzung
 
@@ -45,3 +51,16 @@ PARAGRAPH_DELIMITERS = [
 organized_book = split_book(
     raw, PART_DELIMITERS, CHAPTER_DELIMITERS, PARAGRAPH_DELIMITERS
 )
+
+### 2. Translate ###
+DEEPL_API_KEY = os.getenv("DEEPL_API_KEY")
+if DEEPL_API_KEY is None:
+    raise EnvironmentError("Please save DEEPL_API_KEY as a environment var.")
+
+translator = DeeplTranslator(DEEPL_API_KEY, SOURCE_LANG, TARGET_LANG)
+
+
+t_book = translator.translate_book(organized_book)
+
+
+print(t_book)

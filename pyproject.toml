@@ -6,6 +6,8 @@ authors = ["Artur Dernst, Muhammed Bayram"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+deepl = "^1.22.0"
+tqdm = "^4.67.1"
 
 [tool.poetry.dev-dependencies]
 
