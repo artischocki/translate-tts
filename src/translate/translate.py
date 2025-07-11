@@ -8,6 +8,14 @@ class DeeplTranslator:
         self._source_lang = source_lang
         self._target_lang = target_lang
 
+    def estimate_cost(self, text_document: str) -> tuple[int, float]:
+        """
+        DEEPL Api Kosten: 20Euro / 1.000.000 Zeichen
+        """
+        num_chars = len(text_document)
+        est_cost = (num_chars / 1_000_000) * 20
+        return num_chars, est_cost
+
     def translate_text(self, text: str):
         result = self._translator.translate_text(
             text,

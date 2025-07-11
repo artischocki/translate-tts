@@ -59,6 +59,13 @@ if DEEPL_API_KEY is None:
 
 translator = DeeplTranslator(DEEPL_API_KEY, SOURCE_LANG, TARGET_LANG)
 
+num_chars, estimated_costs = translator.estimate_cost(raw)
+print(f"Estimated costs for translation: {estimated_costs:.2f} Euro")
+print(f"{num_chars} chars.")
+user_in = input("Continue? [Y/N]")
+if not user_in.lower == "y":
+    print("Not translating.")
+    exit()
 
 t_book = translator.translate_book(organized_book)
 
